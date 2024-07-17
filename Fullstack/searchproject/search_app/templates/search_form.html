@@ -1,0 +1,36 @@
+<html>
+<head>
+    <title>Search Form</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+</head>
+
+<body>
+    <h1>Search for Courses by Student Name</h1>
+    <form id="searchForm" method="GET">
+        <label for="studentName">Student Name:</label>
+        <input type="text" id="studentName" name="student_name">
+        <button type="submit">Search</button>
+    </form>
+    <div id="courseList"></div>
+
+    <script>
+        $(document).ready(function() {
+            $('#searchForm').on('submit', function(event) {
+                event.preventDefault();
+                var formData = $(this).serialize();
+                $.ajax({
+                    url: '{% url "search_courses" %}',
+                    type: 'GET',
+                    data: formData,
+                    success: function(response) {
+                        $('#courseList').html(response);
+                    },
+                    error: function(xhr, errmsg, err) {
+                        console.log(xhr.status + ": " + xhr.responseText);
+                    }
+                });
+            });
+        });
+    </script>
+</body>
+</html>

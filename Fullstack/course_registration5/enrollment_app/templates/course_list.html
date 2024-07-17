@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home Page</title>
+</head>
+<body>
+    <h1>Home Page</h1>
+    <h1>Click to go to <a href="{% url 'formfunvar' %}">registration page</a></h1>
+
+    <h1>Displaying Courses details</h1>
+    <ul>
+        {% for course in courses %}
+            <li>{{ course.name }}</li>
+        {% endfor %}
+    </ul>
+
+    <h1>Displaying Student details</h1>
+    <ul>
+        {% for student in students %}
+            <li>{{ student.name }} -- {{ student.email }}
+                <ul>
+                    {% for course in student.courses.all %}
+                        <li>{{ course.name }}</li>
+                    {% endfor %}
+                </ul>
+            </li>
+        {% endfor %}
+    </ul>
+</body>
+</html>

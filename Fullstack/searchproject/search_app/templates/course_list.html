@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Course List</title>
+</head>
+<body>
+    {% if student %}
+    <h2>Courses Enrolled by {{ student.name }}</h2>
+    <ul>
+        {% for course in courses %}
+            <li>{{ course.name }}</li>
+        {% endfor %}
+    </ul>
+    {% else %}
+    <h2>Student not registered</h2>
+    {% endif %}
+</body>
+</html> 
